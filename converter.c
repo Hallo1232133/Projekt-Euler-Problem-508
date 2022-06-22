@@ -62,7 +62,7 @@ unsigned __int128 to_bm1pi(__int128 real, __int128 imag) {
         else {
             real = (imag - real) >> 1;
         }
-        imag = (((real) << 1) - 2 * (imag)) >> 1;
+        imag = (((real) << 1) - ((imag) << 1)) >> 1;
 
         digit *= 10;
     }    
