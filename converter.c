@@ -19,6 +19,7 @@ void complexToPower(int power, __int128* real, __int128* imag) {
     *real = length * cos[(tempPow & 7) >> 1];
     *imag = length * sin[(tempPow & 7) >> 1];
 
+    // compute (-1 + i) ^ tpower when power is not even
     if (power & 1) {
         *imag = *real - *imag;
         *real = *imag - ((*real) << 1);
@@ -52,15 +53,5 @@ unsigned __int128 to_bm1pi(__int128 real, __int128 imag) {
 }
 
 int main () {
-    __int128* real = (__int128*) malloc(sizeof (__int128));
-    __int128* imag = (__int128*) malloc(sizeof (__int128));
 
-    __int128 num = 1001;
-
-    convertNumberToBasis(num, real, imag);
-
-    print_int128(*real);
-    printf("\n");
-    print_int128(*imag);
-    printf("\n");
 }
