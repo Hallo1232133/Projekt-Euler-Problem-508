@@ -21,6 +21,7 @@ void complexToPower(int power, __int128* real, __int128* imag) {
 
     // compute (-1 + i) ^ tpower when power is not even
     if (power & 1) {
+        // might be slower than when using temporary variables to store the results
         *imag = *real - *imag;
         *real = *imag - ((*real) << 1);
     }
@@ -49,7 +50,24 @@ void convertNumberToBasis(unsigned __int128 from, __int128* real, __int128* imag
 }
 
 unsigned __int128 to_bm1pi(__int128 real, __int128 imag) {
-    // TODO; implement
+    unsigned __int128 result = 0;
+    unsigned __int128 digit = 1;
+
+    while (real || imag) {
+        // might be slower than when using temporary variables to store the results
+        if ((real + imag) & 1) {
+            result += digit;
+            real = (imag - real + 1) >> 1;
+        }
+        else {
+            real = (imag - real) >> 1;
+        }
+        imag = (((real) << 1) - 2 * (imag)) >> 1;
+
+        digit *= 10;
+    }    
+    
+    return result;
 }
 
 int main () {
