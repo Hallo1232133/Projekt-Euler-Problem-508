@@ -1,5 +1,4 @@
-#Introduction to the Project
-
+# Introduction to the Project
 The following project is meant to serve as e rough draft/idea hodler.
 
 # Sources
