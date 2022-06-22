@@ -3,7 +3,7 @@
 
 // computes a = (-1 + i) ^ power
 // returns R(a) und Im(a) in pointers
-void coplexToPower(int power, __int128* real, __int128* imag) {
+void complexToPower(int power, __int128* real, __int128* imag) {
     int cos[] = {1, 0, -1, 0};
     int sin[] = {0, -1, 0, 1};
 
@@ -26,7 +26,25 @@ void coplexToPower(int power, __int128* real, __int128* imag) {
 }
 
 void convertNumberToBasis(unsigned __int128 from, __int128* real, __int128* imag) {
-    // TODO: implement
+    *real = 0;
+    *imag = 0;
+    __int128* currReal = (__int128*) malloc(sizeof (__int128));
+    __int128* currImag = (__int128*) malloc(sizeof (__int128));
+    
+    int power = 0;
+    while (from) {
+        if (from & 1) {
+            complexToPower(power, currReal, currImag);
+            *real += *currReal; 
+            *imag += *currImag;
+        }
+
+        from = from / 10;
+        ++power;
+    }
+
+    free(currReal);
+    free(currImag);
 }
 
 unsigned __int128 to_bm1pi(__int128 real, __int128 imag) {
@@ -34,5 +52,15 @@ unsigned __int128 to_bm1pi(__int128 real, __int128 imag) {
 }
 
 int main () {
+    __int128* real = (__int128*) malloc(sizeof (__int128));
+    __int128* imag = (__int128*) malloc(sizeof (__int128));
 
+    __int128 num = 1001;
+
+    convertNumberToBasis(num, real, imag);
+
+    print_int128(*real);
+    printf("\n");
+    print_int128(*imag);
+    printf("\n");
 }
