@@ -1,5 +1,4 @@
 #include "stdlib.h"
-#include "int128_lib.h"
 
 // computes a = (-1 + i) ^ power
 // returns R(a) und Im(a) in pointers
@@ -68,8 +67,4 @@ unsigned __int128 to_bm1pi(__int128 real, __int128 imag) {
     }    
     
     return result;
-}
-
-int main () {
-
 }
