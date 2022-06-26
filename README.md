@@ -1,5 +1,6 @@
 # Introduction to the Project
-The following project is meant to serve as e rough draft/idea hodler.
+The following project is meant to serve as e rough draft/idea hodler for team 254.
+The agorithms were designed by the team during a meeting and then implemented.
 
 # Sources
 The following are the sources used for the project:
